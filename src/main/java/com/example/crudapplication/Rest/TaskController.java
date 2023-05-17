@@ -38,10 +38,10 @@ public class TaskController {
 
     @DeleteMapping("/delete")
         public ApiResponse deleteTask(@RequestBody Task object){
-        if(!todos.contains(object))
-            return new ApiResponse("Task dosent exist");
-        todos.remove(object);
-        return new ApiResponse("Task is removed");
+        if(todos.remove(object))
+            return new ApiResponse("Task is removed");
+
+        return new ApiResponse("Task dosent exist");
     }
 
     @PutMapping ("/status/{id}")
