@@ -38,10 +38,10 @@ public class CustomerController {
 
     @DeleteMapping("/delete")
     public ApiResponse deleteCustomer(@RequestBody Customer object){
-       if(!customers.contains(object))
-           return new ApiResponse("Customer dosent exist");
-        customers.remove(object);
-        return new ApiResponse("Customer is removed");
+        if(customers.remove(object))
+            return new ApiResponse("Customer is removed");
+
+        return new ApiResponse("Customer dosent exist");
     }
 
     @PutMapping ("/deposit/{id}")
